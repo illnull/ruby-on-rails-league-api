@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_210914) do
+ActiveRecord::Schema.define(version: 2020_02_20_211941) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.string "queueType"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2020_02_20_210914) do
   end
 
   create_table "playeers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone_number"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "phone_number"
