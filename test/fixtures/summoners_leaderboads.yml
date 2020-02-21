@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  summoner_Id: 1
-  leaderboard_id: 1
+  summoner: one
+  leaderboard: one
 
 two:
-  summoner_Id: 1
-  leaderboard_id: 1
+  summoner: two
+  leaderboard: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_211941) do
+ActiveRecord::Schema.define(version: 2020_02_21_214531) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.string "queueType"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2020_02_20_211941) do
     t.index ["player_id"], name: "index_summoners_on_player_id"
   end
 
+  create_table "summoners_leaderboads", force: :cascade do |t|
+    t.integer "summoner_id", null: false
+    t.integer "leaderboard_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["leaderboard_id"], name: "index_summoners_leaderboads_on_leaderboard_id"
+    t.index ["summoner_id"], name: "index_summoners_leaderboads_on_summoner_id"
+  end
+
   create_table "summoners_leaderboards", force: :cascade do |t|
     t.integer "summoner_Id"
     t.integer "leaderboard_id"
@@ -69,4 +78,6 @@ ActiveRecord::Schema.define(version: 2020_02_20_211941) do
 
   add_foreign_key "masteries", "summoners"
   add_foreign_key "summoners", "players"
+  add_foreign_key "summoners_leaderboads", "leaderboards"
+  add_foreign_key "summoners_leaderboads", "summoners"
 end
