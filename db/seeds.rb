@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+SummonersLeaderboad.destroy_all
+Leaderboard.destroy_all
 Mastery.destroy_all
 Summoner.destroy_all
 Player.destroy_all
@@ -47,11 +49,12 @@ JSON.parse(response).first(25).each do |encrypt_id|
                                    losses: encrypt_id['losses'],
                                    leaguePoints: encrypt_id['leaguePoints'])
 
-  SummonersLeaderboard.create(summoner: summoner,
-                              leaderboard: leaderboard)
+  SummonersLeaderboad.create(summoner: summoner,
+                             leaderboard: leaderboard)
 end
 
 puts "Created #{Player.count} Player."
 puts "Created #{Summoner.count} Summoner."
 puts "Created #{Mastery.count} Masteries"
 puts "Created #{Leaderboard.count} Leaderboards"
+puts "Created #{SummonersLeaderboad.count} summonerLeaderboards"
