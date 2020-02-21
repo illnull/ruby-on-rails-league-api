@@ -8,7 +8,7 @@ require 'net/http'
 require 'json'
 require 'pp'
 
-AUTH_KEY = 'RGAPI-e8c5f0a8-f385-4705-ab4f-199e7a1998d4'
+AUTH_KEY = 'RGAPI-5978a025-c0eb-4f11-9482-79eddb06d1f2'
 SMURF_KEY = 'RGAPI-c6829e54-a303-42a0-b342-ec6e6f7631e8'
 
 url = "https://na1.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I?page=1&api_key=#{AUTH_KEY}"
@@ -42,13 +42,16 @@ JSON.parse(response).first(25).each do |encrypt_id|
                               championPoints: mastery['championPoints'])
   end
 
-  # 5.times do
-  #   summoner.masteries.create(championId: rand(1..150),
-  #                             championLevel: rand(1..7),
-  #                             championPoints: rand(0..2_000_000))
-  # end
+  leaderboard = Leaderboard.create(queueType: encrypt_id['queueType'],
+                                   wins: encrypt_id['wins'],
+                                   losses: encrypt_id['losses'],
+                                   leaguePoints: encrypt_id['leaguePoints'])
+
+  SummonersLeaderboard.create(summoner: summoner,
+                              leaderboard: leaderboard)
 end
 
 puts "Created #{Player.count} Player."
 puts "Created #{Summoner.count} Summoner."
 puts "Created #{Mastery.count} Masteries"
+puts "Created #{Leaderboard.count} Leaderboards"
