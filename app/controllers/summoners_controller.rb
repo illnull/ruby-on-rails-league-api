@@ -4,5 +4,6 @@ class SummonersController < ApplicationController
   end
 
   def show
+    @summoners = Summoner.find(params[:id]
   end
 end

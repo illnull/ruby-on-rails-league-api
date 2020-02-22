@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'summoners/index'
-  get 'summoners/show'
+  get 'masteries/index'
+  get 'masteries/show'
   resources :pages
-  root to: 'players#index'
+  root to: 'about_us#index'
 
   resources 'players', only: %i[index show]
 
