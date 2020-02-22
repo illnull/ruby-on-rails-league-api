@@ -1,11 +1,12 @@
 <%if @players.empty?%>
-<p>No Players Found</p>
+<p>We are having troubles loading the players, Try again at a later time.</p>
 <% else %>
 <br/>
 <h2>Top Players</h2>
+<br/>
     <% @players.each do |player| %>
                 <br/>
-        <h3><%= player.name %></h3>
+        <h3><%= link_to player.name, player %></h3>
                 <p>Summoner Name: <%=player.summoner.summonerName%></p>
                 <p>Summoner Level: <%=player.summoner.summonerLevel%></p>
     <% end %>

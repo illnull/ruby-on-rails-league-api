@@ -3,9 +3,10 @@
 <% else %>
     <br/>
 <h2>Top Summoners</h2>
+<br/>
         <% @summoners.each do |summoner| %>
             <br/>
-            <h3><%= summoner.summonerName %></h3>
+            <h3><%= link_to summoner.summonerName, summoner %></h3>
             <p>
             Summoner Level: <%=summoner.summonerLevel%>
             </p>
