@@ -1,0 +1,16 @@
+<% if @summoners.empty?%>
+    <p>We are having troubles loading the summoners, Try again at a later time.</p>
+<% else %>
+    <br/>
+<h2>Top Summoners</h2>
+<% counter = 0%>
+        <% @summoners.each do |summoner| %>
+            <br/>
+            <h3><%= summoner.summonerName %></h3>
+            <p>
+            Rank: <%= counter += 1 %> <br/>
+            Summoner Level: <%=summoner.summonerLevel%>
+            </p>
+            
+    <% end %>
+<% end %>

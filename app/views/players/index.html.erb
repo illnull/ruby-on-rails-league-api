@@ -1,10 +1,12 @@
 <%if @players.empty?%>
 <p>No Players Found</p>
 <% else %>
+<br/>
+<h2>Top Players</h2>
     <% @players.each do |player| %>
-    <h3><%= player.name %></h3>
-    <p>Summoner Name: <%=player.summoner.summonerName%></p>
-    <p>Summoner Level: <%=player.summoner.summonerLevel%></p>
-    <br/>
+                <br/>
+        <h3><%= player.name %></h3>
+                <p>Summoner Name: <%=player.summoner.summonerName%></p>
+                <p>Summoner Level: <%=player.summoner.summonerLevel%></p>
     <% end %>
 <% end %>
