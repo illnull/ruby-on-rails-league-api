@@ -1,2 +1,20 @@
-<h1>Summoners#show</h1>
-<p>Find me in app/views/summoners/show.html.erb</p>
+<h2><%= @summoners.summonerName %></h2>
+<br/>
+<h3>Leaderboards</h3>
+<br/>
+<% @summoners.leaderboards.each do |leaderboard| %>
+<p>
+League Points: <%= leaderboard.leaguePoints %><br/>
+Wins: <%= leaderboard.wins %><br/>
+Loses: <%= leaderboard.losses %>
+</p>
+<% end %>
+<h3>Most Played Champions</h3>
+<br/>
+<% @summoners.masteries.each do |mastery| %>
+<p>
+Champion: <%= mastery.championId %><br/>
+Champion Level: <%= mastery.championLevel%><br/>
+Champion Points: <%= mastery.championPoints%>
+</p>
+<% end %>

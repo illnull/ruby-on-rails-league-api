@@ -44,7 +44,7 @@ JSON.parse(response).first(25).each do |encrypt_id|
                               championPoints: mastery['championPoints'])
   end
 
-  manyleaderboards = JSON.parse(response).first(3)
+  manyleaderboards = JSON.parse(response).sample(3)
   manyleaderboards.each do |someleaderboard|
     leaderboard = Leaderboard.create(queueType: someleaderboard['queueType'],
                                      wins: someleaderboard['wins'],
