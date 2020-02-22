@@ -18,7 +18,7 @@ uri = URI(url)
 response = Net::HTTP.get(uri)
 
 JSON.parse(response).first(25).each do |encrypt_id|
-  player = Player.create(name: Faker::Games::HalfLife.character,
+  player = Player.create(name: Faker::Name.unique.name,
                          address: Faker::Address.full_address,
                          phone_number: Faker::PhoneNumber.cell_phone,
                          email: Faker::Internet.email)
@@ -44,13 +44,15 @@ JSON.parse(response).first(25).each do |encrypt_id|
                               championPoints: mastery['championPoints'])
   end
 
-  leaderboard = Leaderboard.create(queueType: encrypt_id['queueType'],
-                                   wins: encrypt_id['wins'],
-                                   losses: encrypt_id['losses'],
-                                   leaguePoints: encrypt_id['leaguePoints'])
-
-  SummonersLeaderboad.create(summoner: summoner,
-                             leaderboard: leaderboard)
+  manyleaderboards = JSON.parse(response).first(3)
+  manyleaderboards.each do |someleaderboard|
+    leaderboard = Leaderboard.create(queueType: someleaderboard['queueType'],
+                                     wins: someleaderboard['wins'],
+                                     losses: someleaderboard['losses'],
+                                     leaguePoints: someleaderboard['leaguePoints'])
+    SummonersLeaderboad.create(summoner: summoner,
+                               leaderboard: leaderboard)
+  end
 end
 
 puts "Created #{Player.count} Player."
