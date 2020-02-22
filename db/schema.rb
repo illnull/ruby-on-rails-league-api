@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_231353) do
+ActiveRecord::Schema.define(version: 2020_02_22_074321) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.string "queueType"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_231353) do
     t.integer "leaguePoints"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "season"
   end
 
   create_table "masteries", force: :cascade do |t|
@@ -84,8 +85,19 @@ ActiveRecord::Schema.define(version: 2020_02_21_231353) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "summonersleaderboards", force: :cascade do |t|
+    t.integer "summoner_id", null: false
+    t.integer "leaderboards_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["leaderboards_id"], name: "index_summonersleaderboards_on_leaderboards_id"
+    t.index ["summoner_id"], name: "index_summonersleaderboards_on_summoner_id"
+  end
+
   add_foreign_key "masteries", "summoners"
   add_foreign_key "summoners", "players"
   add_foreign_key "summoners_leaderboads", "leaderboards"
   add_foreign_key "summoners_leaderboads", "summoners"
+  add_foreign_key "summonersleaderboards", "leaderboards", column: "leaderboards_id"
+  add_foreign_key "summonersleaderboards", "summoners"
 end

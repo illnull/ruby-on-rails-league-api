@@ -18,6 +18,7 @@ uri = URI(url)
 response = Net::HTTP.get(uri)
 
 JSON.parse(response).first(25).each do |encrypt_id|
+  counter = 0
   player = Player.create(name: Faker::Name.unique.name,
                          address: Faker::Address.full_address,
                          phone_number: Faker::PhoneNumber.cell_phone,
@@ -46,10 +47,12 @@ JSON.parse(response).first(25).each do |encrypt_id|
 
   manyleaderboards = JSON.parse(response).sample(3)
   manyleaderboards.each do |someleaderboard|
+    counter += 1
     leaderboard = Leaderboard.create(queueType: someleaderboard['queueType'],
                                      wins: someleaderboard['wins'],
                                      losses: someleaderboard['losses'],
-                                     leaguePoints: someleaderboard['leaguePoints'])
+                                     leaguePoints: someleaderboard['leaguePoints'],
+                                     season: counter)
     SummonersLeaderboad.create(summoner: summoner,
                                leaderboard: leaderboard)
   end

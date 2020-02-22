@@ -1,7 +1,37 @@
-<h2>Current Season</h2>
+<h2>Season 3</h2>
 <%counter = 0%>
-<% @leaderboards.each do |leaderboard| %>
+<% @leaderboards3.each do |leaderboard| %>
     <% leaderboard.summoners.each do |summoner| %>
-    <p><%= summoner.summonerName %></p>
+    <p>
+    Rank: <%= counter += 1 %><br/>
+    Summoner Name: <%= summoner.summonerName %><br/>
+    League Points:<%= leaderboard.leaguePoints%><br/>
+    Wins: <%= leaderboard.wins%><br/>
+    Loses: <%= leaderboard.losses%>
+    </p>
+    <% end %>
+<% end %>
+<h2>Season 2</h2>
+<% @leaderboards2.each do |leaderboard| %>
+    <% leaderboard.summoners.each do |summoner| %>
+    <p>
+    Rank: <%= counter += 1 %><br/>
+    Summoner Name: <%= summoner.summonerName %><br/>
+    League Points:<%= leaderboard.leaguePoints%><br/>
+    Wins: <%= leaderboard.wins%><br/>
+    Loses: <%= leaderboard.losses%>
+    </p>
+    <% end %>
+<% end %>
+<h2>Season 1</h2>
+<% @leaderboards1.each do |leaderboard| %>
+    <% leaderboard.summoners.each do |summoner| %>
+    <p>
+    Rank: <%= counter += 1 %><br/>
+    Summoner Name: <%= summoner.summonerName %><br/>
+    League Points:<%= leaderboard.leaguePoints%><br/>
+    Wins: <%= leaderboard.wins%><br/>
+    Loses: <%= leaderboard.losses%>
+    </p>
     <% end %>
 <% end %>
